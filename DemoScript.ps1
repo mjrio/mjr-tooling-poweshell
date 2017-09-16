@@ -118,3 +118,7 @@ function Calc-Something($a,$b) {
   $args
   return $a + $b
 }
+
+
+
+Import-Module -Name ".\BasicScriptModule.psm1" -Force

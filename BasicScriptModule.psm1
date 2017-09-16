@@ -8,4 +8,4 @@
   return $a + $b
 }
 
-export-modulemember -function Calc-sum
+Export-ModuleMember -Function Calc-sum
