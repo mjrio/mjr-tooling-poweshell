@@ -120,5 +120,29 @@ function Calc-Something($a,$b) {
 }
 
 
+# -----------------------------------
+# Modules
+# -----------------------------------
 
+# Basic module
 Import-Module -Name ".\BasicScriptModule.psm1" -Force
+
+# Advanced module
+cd .\PSModules\PowerShell.Tools.SQL
+Import-Module .\PowerShell.Tools.SQL.psm1
+Get-Module
+
+# Module path
+$env:PSModulePath -split ';' #users path
+[Environment]::GetEnvironmentVariable("PSModulePath", "Machine") -split ';' #machine
+
+# -----------------------------------
+# $Profile
+# -----------------------------------
+
+$profile
+$profile.CurrentUserCurrentHost
+Test-Path $profile
+
+$PROFILE | Format-List * -force #Show all paths to the profiles
+
