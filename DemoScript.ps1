@@ -1,4 +1,6 @@
-﻿# -----------------------------------
+﻿cd C:\git\cruise-basic-powershell
+
+# -----------------------------------
 # Basic Commands
 # -----------------------------------
 
@@ -45,9 +47,9 @@ Get-Alias he*
 # Variables
 # -----------------------------------
 
-$myVar
 $myVar = Get-ChildItem .\ -Recurse
 $env:APPDATA
+$env:COMPUTERNAME
 
 # -----------------------------------
 # Comparison Operators
@@ -55,7 +57,6 @@ $env:APPDATA
 
 8 -eq 7
 5,6,7,8 -lt 7
-
 
 "Euricom Cruise!" -match "Euri"    # Match by regex => true
 "Euricom Cruise!" -contains "Euri" # Exact match => false
@@ -72,7 +73,7 @@ $env:APPDATA
 # For loop
 for ($i = 1; $i -lt 5; $i += 1) 
 {        
-  Write-Host $i
+  Write-Host $i -ForegroundColor Yellow
 }
 
 # Do While loop
@@ -96,17 +97,9 @@ foreach ($item in Get-ChildItem .\ -Recurse)
 # Functions
 # -----------------------------------
 
-function HelloWorld() {
-  Write-host "Hello world"
-}
-
 # Functions need to start with verbs 
 Get-Verb
 
-# New name
-function Write-HelloWorld() {
-  Write-host "Hello world"
-}
 
 # Name parameter
 function Write-HelloWorld($name) {
@@ -122,6 +115,12 @@ function Write-HelloWorld($name, $place) {
 }
 
 Write-HelloWorld 'Thomas' 'Wachtebeke'
+
+# Args variable
+function Calc-Something($a,$b) {
+  write-host "Args: $args" 
+  return $a + $b
+}
 
 
 # Function return variables
@@ -140,12 +139,6 @@ function Calc-Something($a,$b) {
   return $a + $b
 }
 
-# Args variable
-function Calc-Something($a,$b) {
-  $args
-  return $a + $b
-}
-
 
 # -----------------------------------
 # Modules
@@ -158,14 +151,11 @@ Import-Module -Name ".\BasicScriptModule.psm1" -Force
 Get-Module
 
 # Advanced module
-cd  C:\git\Tools.PowerShell\PSModules\PowerShell.Tools.SQL
-Import-Module .\PowerShell.Tools.SQL.psm1
+Import-Module PowerShell.Tools.SQL #no path required because in PSModulePath
 Get-Module
 
 # Get commands available in a module
 get-command -Module 'PowerShell.Tools.*'
-
-cd C:\git\cruise-basic-powershell
 
 
 # Module path
@@ -207,3 +197,5 @@ dir
 
 # Multiple profiles are also supported
 $PROFILE | Format-List * -force #Show all paths to the profiles
+ 
+Get-Variable Is* 
