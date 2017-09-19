@@ -136,6 +136,9 @@ Get-Module
 $env:PSModulePath -split ';' #users path
 [Environment]::GetEnvironmentVariable("PSModulePath", "Machine") -split ';' #machine
 
+# List available modules
+Get-Module -ListAvailable
+
 # -----------------------------------
 # $Profile
 # -----------------------------------
@@ -146,3 +149,20 @@ Test-Path $profile
 
 $PROFILE | Format-List * -force #Show all paths to the profiles
 
+
+# -----------------------------------
+# $Powershell Core
+# -----------------------------------
+
+# Pipelines like the always work
+Get-Process | Sort-Object CPU -Descending | Select-Object -First 5
+
+# Windows alias on Mac
+dir
+
+# .NET functions
+[math]::pi
+(Get-Date).AddDays(7)
+
+# Invoke rest requests
+(Invoke-WebRequest -Uri 'http://jsonplaceholder.typicode.com/posts?userid=1' -Method Get).Content | ConvertFrom-Json
